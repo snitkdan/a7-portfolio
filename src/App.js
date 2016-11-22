@@ -22,9 +22,9 @@ class App extends Component {
             }
             iconElementRight={
               <ul className='flex-container'>
-                <a href='#' target='_blank' ><i className="fa fa-facebook-official" aria-hidden="true"></i></a>
-                <a href='#' target='_blank' ><i className="fa fa-linkedin" aria-hidden="true"></i></a>
-                <a href='#' target='_blank' ><i className="fa fa-twitter" aria-hidden="true"></i></a>
+                <a href='https://www.facebook.com/daniel.snitkovskiy/' target='_blank' ><i className="fa fa-facebook-official" aria-hidden="true"></i></a>
+                <a href='https://www.linkedin.com/in/danielsnitkovskiy' target='_blank' ><i className="fa fa-linkedin" aria-hidden="true"></i></a>
+                <a href='https://github.com/snitkdan' target='_blank' ><i className="fa fa-github" aria-hidden="true"></i></a>
               </ul>
             }
 
