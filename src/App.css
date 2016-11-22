@@ -1,0 +1,90 @@
+.flex-container {
+    display: flex;
+    width: 100%;
+    padding: 15px;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap:wrap;
+    justify-content: space-around;
+}
+
+.App {
+  background-image: url('../public/imgs/seigaiha.png');
+}
+
+.card {
+  width: 45%;
+  margin-bottom: 50px;
+}
+
+#card_image {
+  height: 300px;
+}
+
+#who_image {
+  background-image: url('../public/imgs/Best.jpg');
+  background-position: center;
+  background-size:cover;
+  background-clip: border-box;
+  background-repeat: no-repeat;
+}
+
+p {
+  margin: 10px 0 0 10px;
+  white-space:normal;
+  overflow: hidden;
+  width: 100%;
+  animation: type 4s steps(60, end);
+}
+
+p:nth-child(2){
+  animation: type2 8s steps(60, end);
+}
+
+@keyframes type {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes type2 {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 0;
+  }
+  100% {
+    width: 100;
+  }
+}
+
+@keyframes blink {
+  to {
+    opacity: .0;
+  }
+}
+
+.input {
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+@media screen and (max-width:600px) {
+    .home {
+      display:none;
+    }
+    .card {
+      width: 100%;
+    }
+}
+
+@media screen and (min-width: 1000px){
+  .card {
+    width: 25%;
+    margin-right: 50px;
+  }
+  .nav {
+    width: 1000px;
+  }
+}
