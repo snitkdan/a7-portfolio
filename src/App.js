@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import './App.css';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
-import ActionHome from 'material-ui/svg-icons/action/home';
-import Avatar from 'material-ui/Avatar';
+import IconButton from 'material-ui/IconButton';
+import '../node_modules/font-awesome/css/font-awesome.css'
+
 
 import { Link } from 'react-router';
-
 
 class App extends Component {
   render() {
@@ -20,7 +20,14 @@ class App extends Component {
                 <Link className="link" activeClassName='active' to="/contact"><FlatButton label="Reach Out" /></Link>
               </ul>
             }
-          
+            iconElementRight={
+              <ul className='flex-container'>
+                <a href='#' target='_blank' ><i className="fa fa-facebook-official" aria-hidden="true"></i></a>
+                <a href='#' target='_blank' ><i className="fa fa-linkedin" aria-hidden="true"></i></a>
+                <a href='#' target='_blank' ><i className="fa fa-twitter" aria-hidden="true"></i></a>
+              </ul>
+            }
+
           />
           <br></br>
           <div className="children">

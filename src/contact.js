@@ -3,70 +3,59 @@ import React, {Component} from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import $ from 'jquery'
+import firebase from 'firebase'
 
 var style = {
-	color: 'black'
+    color: 'black'
 }
 
+var config = {
+	 apiKey: "AIzaSyBWYlRWodwfRe9CKqb0piHiu_-I40pmjiQ",
+	 authDomain: "portfolio-4c0ec.firebaseapp.com",
+	 databaseURL: "https://portfolio-4c0ec.firebaseio.com",
+	 storageBucket: "portfolio-4c0ec.appspot.com",
+	 messagingSenderId: "12335692538"
+ };
+ firebase.initializeApp(config);
+
 var ContactPage = React.createClass({
-		processForm() {
-			//Get the form.
-			var form = $("#contact-form");
-			//Get message
-			var message = $('#message');
-			$(form).submit(function(event) {
-					// Stop the browser from submitting the form
-					event.preventDefault();
-
-					//Serialize the form data
-					var formData = $(form).serialize();
-					//Submit the form using AJAX
-					$.ajax({
-									type: 'POST',
-									url: $(form).attr('action'),
-									data: formData
-							})
-							.done(function(response) {
-									//Make sure the message div has the 'success' class
-									$(message).removeClass('error');
-									$(message).addClass('success');
-
-									//Set the message text.
-									$(message).text(response);
-
-									//Clear the form.
-									$('#name').val('');
-									$('#email').val('');
-									$('#message').val('');
-							})
-							.fail(function(data) {
-									//Make sure the message div has the 'error' class
-									$(message).removeClass('success');
-									$(message).addClass('error');
-
-									//Set the message text
-									if (data.responseText !== '') {
-											$(message).text(data.responseText);
-									} else {
-											$(message).text("An error occured! Please try again.");
-									}
-							});
-						});
+		getInitialState(){
+			return({emails:null})
 		},
-
+		componentDidMount(){
+			var database = firebase.database();
+			var emails = database.ref('emails');
+			this.setState({emails:emails});
+			$('#submitMessage').empty();
+		},
+		sendMail(){
+				var name = $('#name').val();
+				var from = $('#email').val();
+				var message = $('#message').val();
+				this.state.emails.push({
+						from:from,
+						name:name,
+						message:message
+				})
+			  $('#name').val('Name');
+				$('#email').val('Email');
+				$('#message').val('Message');
+				$('#submitMessage').append('Thank you for your message!')
+		},
     render() {
         return (
-            <div className='flex-container'>
-								<h2>Contact</h2>
-								<form id='contact-form' className='flex-container' method='post' action='mail.php'>
-                	<TextField name='name' id='name' inputStyle={style} type='text' className='input' fullWidth={true} defaultValue="Name"/><br/>
-									<TextField name='email' id='email' inputStyle={style} type='email' floatingLabelText="" className='input' fullWidth={true} defaultValue="Email"/>
-									<TextField name='message' id='message' inputStyle={style} type='text' className='input' fullWidth={true} defaultValue="Message"/><br/>
-									<RaisedButton onClick={this.processForm} backgroundColor='green' label="Submit" fullWidth={true} />
-								</form>
+            <div id='contact-form' className='flex-container'>
+						<div id='submitMessage' className='flex-container'></div>
+                <h2>Contact</h2>
+                    <TextField name='name' id='name' inputStyle={style} type='text' className='input' fullWidth={true} defaultValue="Name"/><br/>
+                    <TextField name='email' id='email' inputStyle={style} type='email'  className='input' fullWidth={true} defaultValue="Email"/>
+                    <TextField name='message' id='message' inputStyle={style} type='text' className='input' fullWidth={true} defaultValue="Message"/><br/>
+                    <RaisedButton onClick={this.sendMail} backgroundColor='green' label="Submit" fullWidth={true}/>
             </div>
         );
     }
 });
 
 export default ContactPage;
+
+// JavaScript file

@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { IndexRoute, Router, Route, Link, hashHistory } from 'react-router';
 import App from './App';
-import HomePage from './home';
 import WhoPage from './who';
 import DonePage from './done';
 import ContactPage from './contact';
@@ -20,7 +19,7 @@ ReactDOM.render(
     <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
         <Router history={hashHistory}>
             <Route path="/" component={App}>
-                <IndexRoute component={HomePage}/>
+                <IndexRoute component={WhoPage}/>
                 <Route path="who" component={WhoPage}/>
                 <Route path="done" component={DonePage}/>
                 <Route path="contact" component={ContactPage}/>
